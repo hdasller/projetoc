@@ -2,57 +2,83 @@
 #include <stdlib.h> 
 
 //Lib para LCD
-#include <LiquidCrystal.h>
+//#include <LiquidCrystal.h>
 
-#define INSENANA1
-#define INSENANA2
-#define INSENANA3
-#define INSENDG1
-#define INSENDG2
-#define OUTDG1
-#define OUTDG2
-#define OUTDG3
-#define OUTDYSPLAY1
-#define OUTDYSPLAY2
-#define OUTDYSPLAY3
-#define OUTDYSPLAY4
-#define OUTDYSPLAY5
-#define OUTDYSPLAY6
+//LiquidCrystal lcd(OUTDYSPLAY1, OUTDYSPLAY2,OUTDYSPLAY3,OUTDYSPLAY4,OUTDYSPLAY5,OUTDYSPLAY6);
+//lcd.begin(16, 2);
 
-LiquidCrystal lcd(OUTDYSPLAY1, OUTDYSPLAY2,OUTDYSPLAY3,OUTDYSPLAY4,OUTDYSPLAY5,OUTDYSPLAY6);
-lcd.begin(16, 2);
-lcd.clear();
-
+//#define OUTDYSPLAY1
+//#define OUTDYSPLAY2
+//#define OUTDYSPLAY3
+//#define OUTDYSPLAY4
+//#define OUTDYSPLAY5
+//#define OUTDYSPLAY6
 
 
 
 int main (void){
 
-while(true){
-lcd.setCursor(3, 0);
-lcd.print("Valor do sensor1: %d", INSENANA1);
-lcd.setCursor(3, 1);
-lcd.print("Valor do sensor2: %d", INSENANA2);
-delay(5000);
-lcd.clear();
+int sen1, sen2, sen3,sendg1, sendg2, motor1, motor2, motor3;
 
-lcd.setCursor(3, 0);
-lcd.print("Valor do sensor3: %d", INSENANA3);
+motor1 = 1;
+motor2 = 1;
+motor3 = 1;	
 
-delay(5000);
-lcd.clear(); 
 
-if(INSENANA1 > 125 ||INSENANA2 > 125 || INSENANA3 > 125){
+printf("Valor sensor Freezer 1 (Numeros de 0 a 1023)\n");
+scanf("%d", &sen1);
+printf("Valor sensor Freezer 2 (Numeros de 0 a 1023)\n ");
+scanf("%d", &sen2);
+printf("Valor sensor Freezer 3 (Numeros de 0 a 1023)\n");
+scanf("%d", &sen3);
+
+printf("Porta aberta? (0 p/ nao  ou 1 p/ sim)\n");
+scanf("%d", &sendg1);
+
+printf("Freezer conectado a internet? (0 p/ nao  ou 1 p/ sim)\n");
+scanf("%d", &sendg2);
+
+
+if(sendg1 == 1){
+printf("Led Porta Aberta aceso\n");	
+	//lcd.print("Freezer com a porta aberta");		
+motor1 = 0;
+motor2 = 0;
+motor3 = 0;	
+
+}else{
+	printf("Led Porta Aberta apagado\n");	
+}
+
+if(sendg2==1){
+printf("Led Sem Conexao aceso\n");	
+	//lcd.print("Sem conexao com a internet");
+}else{
+	printf("Led Sem Conexao apagado\n");	
 	
-	lcd.clear();
-	lcd.print("Verificar DISPOSITIVO");
-	//Desligar motores.
-	// OUTDG1 = LOW;
-	// OUTDG2 = LOW;
-	// OUTDG3 = LOW;
-		
+}
+if(sendg1 != 1)
+{
+	if(sen1 > 500){
+		printf("Freezer 1 com problema\n");	
+		//lcd.print("Freezer 1 com problema");		
+		}
+	if(sen2 > 500){
+		printf("Freezer 2 com problema\n");			
+		//lcd.print("Freezer 2 com problema");		
 	}
+	
+	if(sen3 > 500){
+		printf("Freezer 3 com problema\n");			
+		//lcd.print("Freezer 3 com problema");		
+	}
+	
+	
+}
 
+if(motor1 == 0 || motor2 == 0 || motor3 == 0){
+printf("Motores desligados \n");	
+//lcd.print("Motores desligados ");		
 }
 
 
