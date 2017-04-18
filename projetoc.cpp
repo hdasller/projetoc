@@ -1,4 +1,5 @@
-#include <stdio.h> 
+#include <st
+dio.h> 
 #include <stdlib.h> 
 
 //Lib para LCD
@@ -50,7 +51,7 @@ motor3 = 0;
 	printf("Led Porta Aberta apagado\n");	
 }
 
-if(sendg2==1){
+if(sendg2==0){
 printf("Led Sem Conexao aceso\n");	
 	//lcd.print("Sem conexao com a internet");
 }else{
